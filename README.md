@@ -27,7 +27,7 @@ ssh-keygen -t ed25519 -C "email@example.com" -f $env:USERPROFILE\.ssh\keyfile
 ### 2. Install OpenSSH Server on the Debian Server
 
 ```bash
-sudo apt update && sudo apt install -y openssh-server
+apt update && sudo apt install -y openssh-server
 ```
 
 ### 3. Install Fail2Ban and Unattended Upgrades
@@ -35,7 +35,7 @@ sudo apt update && sudo apt install -y openssh-server
 Install Fail2Ban to enforce IP bans on repeated failed SSH login attempts, and Unattended Upgrades to enable automatic security updates on Debian:
 
 ```bash
-sudo apt update && sudo apt install -y fail2ban unattended-upgrades
+apt update && sudo apt install -y fail2ban unattended-upgrades
 ```
 
 Enable and start the automatic security updates service:
@@ -50,8 +50,8 @@ systemctl status unattended-upgrades
 
 ```bash
 cd /etc/fail2ban
-sudo cp jail.conf jail.local
-sudo vim jail.local
+cp jail.conf jail.local
+vim jail.local
 ```
 
 Add or update the `[sshd]` section in `jail.local`:
@@ -99,7 +99,7 @@ ssh user@remote_address
 Edit the SSH daemon configuration file:
 
 ```bash
-sudo vim /etc/ssh/sshd_config
+vim /etc/ssh/sshd_config
 ```
 
 Apply the following changes:
@@ -136,7 +136,7 @@ If the login succeeds — well done! You can now safely close the old session.
 Check the list of IPs currently banned by Fail2Ban:
 
 ```bash
-sudo fail2ban-client status sshd
+fail2ban-client status sshd
 ```
 
 ---
